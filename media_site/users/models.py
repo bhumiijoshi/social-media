@@ -24,7 +24,9 @@ class User(AbstractUser,BaseModel):
     date_of_birth = models.DateField(max_length=8,blank=False,verbose_name = "Date Of Birth")
     
     class Meta:
-        db_table = "Users"
+        db_table = "users"
+        verbose_name = "User"
+        verbose_name_plural = "Users"
         
     def __str__(self):
         return self.username
