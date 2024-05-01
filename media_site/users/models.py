@@ -1,32 +1,31 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from rest_framework_simplejwt import RefreshToken
+from media_site.models import BaseModel
 
-class BaseModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True 
-        
-options = (
-        ('male', 'Male'),
-        ('female', 'Female'),
-        ('others','Others')
+   
+GENDER = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others','Others')
     )
 
 class User(AbstractUser,BaseModel):
-    email = models.EmailField(max_length=255, unique=True, db_index=True)
+    email = models.EmailField(max_length=255, unique=True, db_index=True,verbose_name = "Email")
     gender = models.CharField(
-        choices = options,
+        choices = GENDER,
         default = 'male',
         null=False,
-        blank=False
+        blank=False,
+        verbose_name = "Gender"
         )
-    bio = models.TextField(max_length=500, blank=True)
-    profile_pic= models.ImageField(upload_to='profile_images/',null=True,blank=True)
-    dob = models.DateField(max_length=8,blank=False)
+    bio = models.TextField(blank=True,verbose_name = "Bio")
+    profile_pic= models.ImageField(upload_to='profile_image/',null=True,blank=True,verbose_name = "Profile Picture")
+    date_of_birth = models.DateField(max_length=8,blank=False,verbose_name = "Date Of Birth")
     
+    class Meta:
+        db_table = "Users"
+        
     def __str__(self):
         return self.username
     
