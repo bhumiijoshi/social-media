@@ -1,16 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from rest_framework_simplejwt import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken
 from media_site.models import BaseModel
 
-   
-GENDER = (
+class User(AbstractUser,BaseModel):
+    GENDER = (
         ('Male', 'Male'),
         ('Female', 'Female'),
         ('Others','Others')
     )
-
-class User(AbstractUser,BaseModel):
+    
     email = models.EmailField(max_length=255, unique=True, db_index=True,verbose_name = "Email")
     gender = models.CharField(
         choices = GENDER,
