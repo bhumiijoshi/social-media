@@ -13,7 +13,7 @@ The first thing to do is to clone the repository:
 
 ```bash
 $ git clone https://github.com/bhumiijoshi/social-media.git
-$ cd media-site
+$ cd media_site
 ```
 
 Now copy .env.example file into your .env file.
