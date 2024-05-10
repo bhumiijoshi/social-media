@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/',views.LoginAPIView.as_view(),name="login"),
     path('logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('profile/<int:pk>/', views.RetrieveUpdateDeleteItem.as_view(),name='profile'),
 ]
