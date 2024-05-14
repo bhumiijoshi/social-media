@@ -35,4 +35,3 @@ class PostAttachment(BaseModel):
     image = models.ImageField(upload_to='post_attachment')
     post = models.ForeignKey(Post, related_name='post_attachments',on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, related_name='attachments', on_delete=models.CASCADE)
-    
