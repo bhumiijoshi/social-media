@@ -6,7 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
     post_comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     post_likes = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     post_attachments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
+    body = serializers.CharField(required=True)
     class Meta:
         model = Post
         fields = ['id', 'body', 'owner', 'post_comments', 'post_likes', 'post_attachments']

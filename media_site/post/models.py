@@ -5,7 +5,7 @@ from users.models import User
 
 
 class Post(BaseModel):
-    body = models.TextField(blank=True, null=True)
+    body = models.TextField(blank=False, null=False,default="body")
     created_by = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
 
     class Meta:
@@ -16,6 +16,7 @@ class Post(BaseModel):
         
     def __str__(self):
         return f"{self.created_by.username} - {self.body[:10]}"
+    
     
 class Like(BaseModel):
     post = models.ForeignKey(Post, related_name='post_likes',on_delete=models.CASCADE)

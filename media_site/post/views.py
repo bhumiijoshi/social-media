@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import User, Comment, Like, PostAttachment, Post
-from .serializers import PostSerializer, CommentSerializer
+from .serializers import PostSerializer, CommentSerializer, LikeSerializer
 from rest_framework import viewsets
 from media_site.permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view, permission_classes

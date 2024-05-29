@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('<int:pk>/', views.RetrieveUpdateDeleteItem.as_view(),name='profile'),
+    path('list/',views.UserList.as_view(),name ='user_list')
 ]
