@@ -4,14 +4,17 @@ from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-class RegisterSerializer(serializers.ModelSerializer):
+class UsersSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     profile_pic = serializers.ImageField(required=False)
     gender = serializers.ChoiceField(choices=User.GENDER)
+    posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     
     class Meta:
         model = User
-        fields = ['id','email', 'username', 'password','gender','bio','profile_pic','date_of_birth']
+        fields = ['id','email', 'username', 'password','gender','bio','profile_pic','date_of_birth','posts','comments']
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -43,5 +46,4 @@ class LoginSerializer(serializers.ModelSerializer):
             'username': user.username,
             'tokens': user.tokens, 
         }
-
-       
+    
