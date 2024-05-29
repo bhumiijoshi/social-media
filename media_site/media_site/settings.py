@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os 
+import datetime
 
 load_dotenv()
 
@@ -31,6 +32,8 @@ DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
+AUTH_USER_MODEL = "users.User"
+
 # Application definition
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -43,9 +46,10 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
-INHOUSE_APPS = []
+INHOUSE_APPS = ['users']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + INHOUSE_APPS
 
@@ -136,3 +140,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
