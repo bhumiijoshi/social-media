@@ -1,14 +1,16 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: main
     hooks:
-    -   id: trailing-whitespace
--   repo: https://github.com/psf/black
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
     rev: main
     hooks:
-    -   id: black
--   repo: https://github.com/PyCQA/isort
+      - id: black
+
+  - repo: https://github.com/pre-commit/mirrors-isort
     rev: main
     hooks:
-    -   id: isort
-        args: ["--profile=black"]
+      - id: isort
+        args: ["--profile", "black", "--force-single-line-imports"]
