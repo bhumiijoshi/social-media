@@ -1,5 +1,4 @@
 asgiref==3.8.1
-backports.zoneinfo==0.2.1
 cfgv==3.4.0
 distlib==0.3.8
 Django==4.2.11
@@ -11,6 +10,7 @@ exceptiongroup==1.2.1
 filelock==3.14.0
 identify==2.5.36
 iniconfig==2.0.0
+isort==5.13.2
 nodeenv==1.8.0
 packaging==24.0
 pillow==10.3.0
